@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J07Array.html</title>
+    <script>
+        var array = new Array(5);
+
+        document.write("배열의크기:"+array.length);
+        document.write("<h2>배열 초기화 전 출력</h2>");
+        for(var i=0 ; i<array.length ; i++){
+            document.write("array["+i+"]="+array[i]+"<br/>");
+        }
+        array[0] = 100;
+        array[1] = '자바스크립트';
+        array[2] = new Date();
+        array[3] = 3.14;
+        array[4] = false;
+
+        document.write("<h2>배열 초기화 후 출력</h2>");
+        for(var i = 0; i<array.length ; i++){
+            document.write(i+"번방의 자료형:"+typeof(array[i])+",array["+i+"]="
+            +array[i]+"<br/>");
+        }
+
+        var init = new Array("홍길동" , 20, "가산디지털","010-1234-5678");
+        document.write("<h2>선언과 동시에 초기화 후 출력</h2>");
+        for(var i=0; i<init.length ; i++){
+            document.write(i+"번방의 자료형:"+typeof(init[i])+", init["+i+"]="
+                +init[i] +"<br />");
+        }
+
+        var initNoNew = ["KOSMO" , 1, "Javascript", '메르디앙'];
+        document.write("<h2>[] 이용하여 배열선언 후 출력</h2>");
+
+        for(var i=0 ; i<initNoNew.length ; i++){
+            document.write(i +"번방의 자료형:" +typeof(initNoNew[i])+
+                ", initNoNew["+i+"]"+initNoNew[i]+"<br/>")
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
