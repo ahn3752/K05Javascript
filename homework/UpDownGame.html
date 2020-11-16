@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpDownGame.html</title>
+    <script>
+        var count = 0;
+        var gamen = 0;
+        var randomnum = parseInt(Math.random() * 45) + 1;
+
+        function input() {
+
+            var inputnum = document.getElementById("inputnum").value;
+            while (count < 7) {
+                document.getElementById("random").innerHTML = randomnum;
+
+                if (inputnum > 100) {
+                    window.alert("1~100사이의 정수를 입력하세요.");
+                    var img = document.getElementById("game");
+                    img.src = "/images/error.jpg";
+                    input.focus();
+                }
+                else {
+                    count++;
+                    document.getElementById("count").innerHTML = count;
+                    if (randomnum == inputnum) {
+                        var img = document.getElementById("game");
+                        img.src = "/images/answer.jpeg";
+                        var con = document.getElementById("con")
+                        con.style.display = 'inline-block';
+                    }
+                    if (randomnum > inputnum) {
+                        var img = document.getElementById("game");
+                        img.src = "/images/down.jpg";
+                    }
+                    if (randomnum < inputnum) {
+                        var img = document.getElementById("game");
+                        img.src = "/images/up.jpg";
+                    }
+                }
+                document.getElementById("gamen").innerHTML = gamen;
+
+            }
+            if (count >= 7) {
+                window.alert("시도횟수가 초과되었습니다. 게임을 재시작합니다.")
+                location.reload();
+                
+            }
+
+        }
+        function button(){
+            location.reload();
+        }
+
+    </script>
+    <style>
+    .dis{
+        display:none;
+    }
+</style>
+</head>
+
+<body>
+    <h2 id="random"></h2>
+    <h2>업다운게임</h2>
+
+    <h3>1~100사이의 숫자를 입력하세요.</h3>
+
+    <h3>시도횟수 :<span id="count"></span> </h2>
+
+        <div>숫자입력 : <input type="text" id="inputnum">
+            <input type="button" value="확인" onclick="input();">
+            <input type="button" value="새로고침" id="con" class = "dis" onclick="button();"></div>
+        <br />
+        <img id="game" src="/images/updowngame.jpg" width="300" />
+</body>
+
+</html>
