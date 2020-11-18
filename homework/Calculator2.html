@@ -54,35 +54,56 @@
         }
     </style>
     <script>
+        var arr = new Array();
+        var res = 0;
+        var count = 0;
 
         function select(num) {
-
-            text.value += num;
-
+            text.value = num;
             document.getElementById("text").innerHTML = text.value;
+            arr.push(num)
 
-            if(num == '/' || num == '*' || num =='+' || num=='-'){
-                document.getElementById("text").value.style.visibility="hidden";
+        }
+        function op(n) {
+            tex.value = n;
+            document.getElementById("tex").innerHTML = tex.value;
+
+            last = tex.value.substring(tex.value.length - 1, tex.value.length);
+
+            if (count > 0) {
+                arr.pop();
+                arr.push(last)
             }
-        
+            else {
+                arr.push(tex.value);
+                count++;
+            }
+
 
         }
 
+        function result() {
 
-        function result(){
-            var result = document.getElementById("text");
-    
-            
-            result.value = eval(result.value);
-            
+            for (var i = 0; i < arr.length; i++) {
+                res += arr[i];
+
+            }
+            text.value = eval(res);
+            arr.length = 0;
+            count = 0;
+            arr.push(eval(text.value));
+            res = null;
         }
-        function c(){
+        function c() {
+            res = 0;
+            arr.length = 0;
             document.getElementById("text").value = "";
+            document.getElementById("tex").value = "";
         }
-        function back(){
-            text.value = text.value.substring(0,text.value.length-1);
+        function back() {
+            text.value = text.value.substring(0, text.value.length - 1);
         }
-    
+
 
     </script>
 </head>
@@ -91,8 +112,10 @@
     <table>
         <tr>
             <td colspan="4">
+
                 <input type="text" id="text">
             </td>
+            <input type="text" id="tex" style="visibility: hidden;">
         </tr>
         <tr>
             <td colspan="2"><button type="button" value="BackSpace" onclick="back();">BackSpace</button></td>
@@ -103,25 +126,25 @@
             <td><button type="button" value="1" onclick="select(1);">1</button></td>
             <td><button type="button" value="2" onclick="select(2);">2</button></td>
             <td><button type="button" value="3" onclick="select(3);">3</button></td>
-            <td><button type="button" value="/" onclick="select('/')">/</button></td>
+            <td><button type="button" value="/" onclick="op('/')">/</button></td>
         </tr>
         <tr>
             <td><button type="button" value="4" onclick="select(4);">4</button></td>
             <td><button type="button" value="5" onclick="select(5);">5</button></td>
             <td><button type="button" value="6" onclick="select(6);">6</button></td>
-            <td><button type="button" value="X" onclick="select('*')">X</button></td>
+            <td><button type="button" value="X" onclick="op('*')">X</button></td>
         </tr>
         <tr>
             <td><button type="button" value="7" onclick="select(7);">7</button></td>
             <td><button type="button" value="8" onclick="select(8);">8</button></td>
             <td><button type="button" value="9" onclick="select(9);">9</button></td>
-            <td><button type="button" value="+" onclick="select('+')">+</button></td>
+            <td><button type="button" value="+" onclick="op('+')">+</button></td>
         </tr>
         <tr>
             <td><button type="button" value="=" id="result" onclick="result()">=</button></td>
             <td><button type="button" value="0" onclick="select(0);">0</button></td>
             <td><button type="button" value="." onclick="select('.')">.</button></td>
-            <td><button type="button" value="-" onclick="select('-')">-</button></td>
+            <td><button type="button" value="-" onclick="op('-')">-</button></td>
         </tr>
     </table>
 </body>
